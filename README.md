@@ -1,26 +1,27 @@
-Project title
-Building an app witch has a network of docking stations and bikes that anyone can use.
-this app will emulate all the docking stations, bikes, and infrastructure.
+# Boris Bikes Challenge
 
+A program to emulate all the functionality of London's Boris Bikes system (docking stations, bikes, infrastructure such as repair staff etc)
 
-Motivation
-Week 1 project will help us understaning class and TDD
+## Motivation
 
+Week 1 Makers Academy challenge to learn about:
+* Writing code that is easy to change
+* Applying test-driven development
+* Using object-orientated programming
+* Ruby to a deeper degree
 
-Build status
-not started
+## Tech/framework
 
-Code style
-Ruby standard
+Built with Ruby and RSpec for testing
 
+## Installation
 
-Built with
-Ruby
+Rspec
 
+## How to use?
 
-Tests
+To be updated as development progresses
 
-How to use?
+## Credits
 
-Credits
-Nabil and John
+Created by Elishka Flint & Daniel Lau
