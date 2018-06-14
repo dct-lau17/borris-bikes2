@@ -15,14 +15,14 @@ describe DockingStation do
 
   it "docks something" do
     bike = Bike.new
-    expect(subject.dock(bike)).to eq [bike]
+    expect(subject.dock(bike)).to include bike
   end
 
   it "show bike in dock" do
     bike = Bike.new
     #not shore what this line is doing
     subject.dock(bike)
-    expect(subject.bike).to eq [bike] # need check
+    expect(subject.bike).to include bike # need check
 
   end
 
