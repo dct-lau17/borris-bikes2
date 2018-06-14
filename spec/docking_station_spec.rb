@@ -1,6 +1,7 @@
 require './lib/docking_station.rb'
 
 describe DockingStation do
+
   it { should respond_to(:release_bike) }
 
   # it "release working bikes" do
@@ -14,14 +15,14 @@ describe DockingStation do
 
   it "docks something" do
     bike = Bike.new
-    expect(subject.dock(bike)).to eq bike
+    expect(subject.dock(bike)).to eq [bike]
   end
 
   it "show bike in dock" do
     bike = Bike.new
     #not shore what this line is doing
     subject.dock(bike)
-    expect(subject.bike).to eq bike
+    expect(subject.bike).to eq [bike] # need check
 
   end
 
@@ -41,10 +42,13 @@ describe DockingStation do
 
  describe '#dock' do
    it 'raises an error when full' do
-     subject.dock(Bike.new)
+     20.times { subject.dock Bike.new }
      expect {subject.dock Bike.new}. to raise_error 'Docking station full'
+
+
     end
 
  end
+
 
 end
