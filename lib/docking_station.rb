@@ -1,12 +1,11 @@
 # The docking station for bikes in the Boris Bike project.
 require_relative "bike"
 class DockingStation
-
   attr_reader :bikes
+  DEFAULT_CAPACITY = 20
 
   def initialize
     @bikes = []
-
   end
 
   def dock(bike)
@@ -20,7 +19,7 @@ class DockingStation
   end
 
   def full?
-    @bikes.count >= 20
+    @bikes.count >= DEFAULT_CAPACITY
   end
 
   def empty?
