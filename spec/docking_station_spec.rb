@@ -2,6 +2,8 @@ require 'docking_station'
 
 describe DockingStation do
 
+described_class.send(:public, *described_class.private_instance_methods)
+
   it { should respond_to(:release_bike) }
 
   # it "release working bikes" do
