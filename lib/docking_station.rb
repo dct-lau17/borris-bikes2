@@ -35,7 +35,7 @@ attr_reader :bikes
   end
 
   def bike_working
-     bikes.select {|bike| !bike.broken?}
+     bikes.reject {|bike| bike.broken?}
   end
 
 

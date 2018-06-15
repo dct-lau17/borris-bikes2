@@ -7,14 +7,13 @@ described_class.send(:public, *described_class.private_instance_methods)
   it { should respond_to(:release_bike) }
 
   it "release working bikes" do
-    subject.dock Bike.new
+    subject.dock double(:bike, broken?: false)
     bike = subject.release_bike
-    expect(bike).to be_working
+    expect(bike).to_not be_broken
   end
 
   it "does not release a broken bike" do
-    bike = Bike.new
-    bike.report_broken
+    bike = double(:bike, broken?: true)
     subject.dock(bike)
     expect {subject.release_bike}.to raise_error "No bikes available"
   end
@@ -24,12 +23,12 @@ described_class.send(:public, *described_class.private_instance_methods)
   it { is_expected.to respond_to(:bikes) }
 
   it "docks something" do
-    bike = Bike.new
+    bike = double(:bike)
     expect(subject.dock(bike)).to include bike
   end
 
   it "show bike in dock" do
-    bike = Bike.new
+    bike = double(:bike)
     subject.dock(bike)
     expect(subject.bikes).to include bike # need check
   end
@@ -40,7 +39,7 @@ described_class.send(:public, *described_class.private_instance_methods)
 
   describe "#release_bike" do
     it "releases a bike" do
-      bike = Bike.new
+      bike = double(:bike, broken?: false)
       subject.dock(bike)
       expect(subject.release_bike).to eq bike
     end
@@ -53,7 +52,7 @@ described_class.send(:public, *described_class.private_instance_methods)
 
  describe "#dock" do
    it "raises an error when full" do
-     subject.capacity.times { subject.dock Bike.new }
+     subject.capacity.times { subject.dock double(:bike, broken?: false) }
      expect {subject.dock Bike.new}.to raise_error 'Docking station full'
     end
  end
@@ -61,14 +60,14 @@ described_class.send(:public, *described_class.private_instance_methods)
  describe "#initialize"do
    it 'has a variable capacity' do
      docking_station = DockingStation.new(50)
-     50.times{docking_station.dock Bike.new}
-     expect{docking_station.dock Bike.new}.to raise_error 'Docking station full'
+     50.times{docking_station.dock double(:bike, broken?: false)}
+     expect{docking_station.dock double(:bike, broken?: false)}.to raise_error 'Docking station full'
    end
  end
 
  describe "#initialize" do
   subject { DockingStation.new }
-  let(:bike) { Bike.new }
+  let(:bike) { double(:bike, broken?: false)}
     it " has default capacity" do
       described_class::DEFAULT_CAPACITY.times{
         subject.dock(bike)
