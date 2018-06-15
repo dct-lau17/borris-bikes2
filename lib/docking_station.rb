@@ -1,9 +1,10 @@
 # The docking station for bikes in the Boris Bike project.
-require_relative "bike"
+require_relative "bike.rb"
 
 class DockingStation
   attr_reader :capacity
-  
+
+
   DEFAULT_CAPACITY = 20
 
   def initialize(capacity = DEFAULT_CAPACITY)
@@ -17,10 +18,9 @@ class DockingStation
   end
 
   def release_bike
-    fail "No bikes available" if empty?
+    fail "No bikes available" if bike_working.empty?
     bikes.pop
   end
-
 
 private
 
@@ -33,5 +33,11 @@ attr_reader :bikes
   def empty?
      bikes.empty?
   end
+
+  def bike_working
+     bikes.select {|bike| !bike.broken?}
+  end
+
+
 
 end
